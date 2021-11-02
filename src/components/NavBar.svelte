@@ -1,4 +1,4 @@
 <script language="ts">
 </script>
 
-<div class="flex justify-center w-full"><a href="/">Index</a></div>
+<div class="flex text-3xl text-white font-bold justify-center w-full"><a href="/">GeoRacer</a></div>
