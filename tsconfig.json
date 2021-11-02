@@ -20,7 +20,7 @@
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"baseUrl": ".",
-		"allowJs": false,
+		"allowJs": true,
 		"checkJs": true,
 		"paths": {
 			"$lib": ["src/lib"],
