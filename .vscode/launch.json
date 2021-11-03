@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "command": "npm i; npm i --prefix ./backend",
+            "name": "Install",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
+            "command": "npm run hybrid",
+            "name": "Run Hybrid",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
+            "command": "npm run dev",
+            "name": "Run Frontend",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
+            "command": "nodemon ./backend/main.ts",
+            "name": "Run Backend",
+            "request": "launch",
+            "type": "node-terminal"
+        }
+    ]
+}
