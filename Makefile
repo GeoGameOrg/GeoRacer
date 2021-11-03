@@ -5,5 +5,5 @@ start:
 
 install:
 	npm i 
-
+	npm i --prefix ./backend
 
