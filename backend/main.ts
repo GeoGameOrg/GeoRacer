@@ -1,13 +1,7 @@
 import { Server } from 'socket.io';
+import { v4 as uuidv4 } from 'uuid'
 
 // source: https://stackoverflow.com/a/2117523
-function uuidv4() {
-	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-		var r = (Math.random() * 16) | 0,
-			v = c == 'x' ? r : (r & 0x3) | 0x8;
-		return v.toString(16);
-	});
-}
 enum GamePhase {
 	Lobby,
 	Ingame,
@@ -26,7 +20,7 @@ interface Player {
 interface Lobby {
 	players: Player[];
 	gamePhase: GamePhase;
-	settings: {[key: string]: any};
+	settings: { [key: string]: any };
 }
 
 const defaultLobby: Lobby = {
@@ -35,7 +29,7 @@ const defaultLobby: Lobby = {
 	settings: {}
 };
 interface Lobbies {
-	[key: string] : Lobby
+	[key: string]: Lobby
 }
 const lobbies: Lobbies = {};
 
@@ -46,7 +40,7 @@ io.on('connection', (socket) => {
 	socket.on('joinRoom', (room) => {
 		console.log(socket.id, 'joined room: ', room);
 	});
-	socket.on('id', (id: null | string, callback ) => {
+	socket.on('id', (id: null | string, callback) => {
 		if (id === null) {
 			id = uuidv4();
 		}
