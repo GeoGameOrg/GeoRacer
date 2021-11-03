@@ -43,8 +43,10 @@ const io = new Server({ cors: { origin: 'http://localhost:3000', methods: ['GET'
 
 io.on('connection', (socket) => {
 	console.log(socket.id, 'connected');
-	socket.on('joinRoom', (room) => {
+	socket.on('joinRoom', (room, callback) => {
 		console.log(socket.id, 'joined room: ', room);
+		let success = true;
+		callback(success)	
 	});
 	socket.on('id', (id: null | string, callback ) => {
 		if (id === null) {

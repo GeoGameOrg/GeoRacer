@@ -1,6 +1,5 @@
 start:
-	xfce4-terminal -e "npm run dev"
-	xfce4-terminal -e "nodemon ./backend/main.ts"
+	xfce4-terminal -e  'npm run hybrid'
 	nvim
 
 install:
