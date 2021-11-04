@@ -75,7 +75,7 @@
 				}
 			} as google.maps.MapOptions
 		);
-	});
+	}).catch((e)=>console.log(e))
 </script>
 
 <div id="pano" class="w-full h-screen rounded-xl shadow-xl" />

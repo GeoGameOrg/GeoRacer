@@ -46,18 +46,20 @@
 		apiKey: 'AIzaSyAD6HVJHgRC0i5nqcX7Pnu9veKbSRSN5C0'
 	});
 
-	loader.load().then(() => {
-		$map.map = new google.maps.Map(
+	loader
+		.load()
+		.then(() => {
+			$map.map = new google.maps.Map(
 				document.getElementById('map') as HTMLElement,
 				{
-					center: { lat: -34.397, lng: 150.644 },
+					center: { lat: 42.345573, lng: -71.098326 },
 					zoom: 8,
 					mapId: '1deb78b225b46ac6',
 					disableDefaultUI: true
 				} as google.maps.MapOptions
-			)
-		});
-
+			);
+		})
+		.catch((e) => console.log(e));
 </script>
 
 <div id="map" class="w-full h-screen rounded-xl shadow-xl" />
