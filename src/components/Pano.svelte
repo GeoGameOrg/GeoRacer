@@ -8,7 +8,9 @@
 			return this._loaded;
 		}
 
-		get pano () {return this._pano}
+		get pano() {
+			return this._pano;
+		}
 		set pano(pano: google.maps.StreetViewPanorama) {
 			this._loaded = true;
 			this.resolvePromise();
@@ -63,19 +65,25 @@
 		apiKey: 'AIzaSyAD6HVJHgRC0i5nqcX7Pnu9veKbSRSN5C0'
 	});
 	export const position = { lat: 42.345573, lng: -71.098326 };
-	loader.load().then(() => {
-		$pano.pano = new google.maps.StreetViewPanorama(
-			document.getElementById('pano') as HTMLElement,
-			{
-				position,
-				disableDefaultUI: true,
-				pov: {
-					heading: 34,
-					pitch: 10
-				}
-			} as google.maps.MapOptions
-		);
-	}).catch((e)=>console.log(e))
+	loader
+		.load()
+		.then(() => {
+			$pano.pano = new google.maps.StreetViewPanorama(
+				document.getElementById('pano') as HTMLElement,
+				{
+					position,
+					disableDefaultUI: true,
+					pov: {
+						heading: 34,
+						pitch: 10
+					}
+				} as google.maps.MapOptions
+			);
+		})
+		.catch((reason) => {
+			// Probably @googlemaps/js-api-loader
+			console.log(reason);
+		});
 </script>
 
 <div id="pano" class="w-full h-screen rounded-xl shadow-xl" />

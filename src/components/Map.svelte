@@ -59,7 +59,10 @@
 				} as google.maps.MapOptions
 			);
 		})
-		.catch((e) => console.log(e));
+		.catch((reason) => {
+			// Probably @googlemaps/js-api-loader
+			console.log(reason)
+		});
 </script>
 
 <div id="map" class="w-full h-screen rounded-xl shadow-xl" />
