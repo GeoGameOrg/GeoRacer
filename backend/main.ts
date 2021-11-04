@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
 		}
 
 		// Check for Username (Create if undefined)
-		var username = socket.username;
+		let username = socket.username;
 		if (username === undefined) {
 			username = uuidv4()
 			console.debug(socket.id, "[createRoom]", `generated username '${username}'`);
