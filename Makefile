@@ -3,6 +3,11 @@ start:
 	nvim
 
 install:
-	npm i 
-	npm i --prefix ./backend
+	git clone git@github.com:GeoGameOrg/api-server.git backend/
 
+clean:
+	rm -rf backend/
+	rm -rf node_modules/
+	rm package-lock.json
+
+	npm i
