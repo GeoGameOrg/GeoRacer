@@ -106,7 +106,7 @@
 </script>
 
 <script lang="ts">
-	import { Loader } from '@googlemaps/js-api-loader';
+	import {loadGoogleMaps} from "./LoadGoogleMaps.svelte"
 	interface MapOptions extends google.maps.MapOptions {
 		mapId: string;
 	}
@@ -118,14 +118,8 @@
 	};
 	mapOptions.mapId = '1deb78b225b46ac6';
 
-	const loader = new Loader({
-		apiKey: 'AIzaSyAD6HVJHgRC0i5nqcX7Pnu9veKbSRSN5C0',
-		libraries: ['drawing']
-	});
-
-	loader
-		.load()
-		.then(() => {
+	
+		$loadGoogleMaps.then(() => {
 			$map.map = new google.maps.Map(document.getElementById('map') as HTMLElement, mapOptions);
 		})
 		.catch((reason) => {
