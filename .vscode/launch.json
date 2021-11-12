@@ -5,26 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "npm i; npm i --prefix ./backend",
-            "name": "Install",
-            "request": "launch",
-            "type": "node-terminal"
-        },
-        {
-            "command": "npm run hybrid",
-            "name": "Run Hybrid",
+            "command": "npm run dev",
+            "name": "RUN: Developer",
             "request": "launch",
             "type": "node-terminal"
         },
         {
             "command": "npm run dev",
-            "name": "Run Frontend",
+            "name": "dev: Frontend",
             "request": "launch",
             "type": "node-terminal"
         },
         {
-            "command": "nodemon ./backend/main.ts",
-            "name": "Run Backend",
+            "command": "npm run dev --prefix ./backend",
+            "name": "dev: Backend",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
+            "command": "npm run hybrid",
+            "name": "dev: Hybrid",
             "request": "launch",
             "type": "node-terminal"
         }
