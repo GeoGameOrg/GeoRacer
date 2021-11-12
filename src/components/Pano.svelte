@@ -60,6 +60,7 @@
 </script>
 
 <script lang="ts">
+
 	import {loadGoogleMaps} from "./LoadGoogleMaps.svelte"
 	export const position = { lat: 42.345573, lng: -71.098326 };
 		$loadGoogleMaps.then(() => {

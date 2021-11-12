@@ -15,18 +15,18 @@ import Index from './index.svelte';
 
 describe('Index', () => {
 
-//   let renderedComponent: RenderResult;
+  let renderedComponent: RenderResult;
 
-//   beforeEach(() => {
-//     renderedComponent = render(Index);
-//   });
+  beforeEach(() => {
+    renderedComponent = render(Index);
+  });
 
-  // describe('once the component has been rendered', () => {
+  describe('once the component has been rendered', () => {
 
-  //   test('should show the proper heading', () => {
-  //     // expect(renderedComponent.getByText('Welcome to SvelteKit')).toBeInTheDocument();
-  //   });
+    test('Beta should be on Site', () => {
+      expect(renderedComponent.getByText('Beta')).toBeInTheDocument();
+    });
 
-  // });
+  });
 
 });
