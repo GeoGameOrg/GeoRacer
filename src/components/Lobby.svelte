@@ -1,4 +1,4 @@
-<script >
+<script>
 	let name = 'Sören';
 	export let lobbyCode;
 </script>

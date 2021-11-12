@@ -13,6 +13,7 @@
 			this._map = map;
 		}
 		resolvePromise: Function;
+		get map(){return this._map}
 
 		wait = new Promise<void>((resolve) => {
 			this.resolvePromise = resolve;
@@ -22,6 +23,70 @@
 			}
 		});
 
+		drawRectangle(rectangleOptions?: google.maps.RectangleOptions, listener?: Function) {
+			let rectangles: google.maps.Rectangle[] = [];
+			let drawingManager: null | google.maps.drawing.DrawingManager;
+			if (this._loaded) {
+				drawingManager = new google.maps.drawing.DrawingManager({
+					drawingMode: google.maps.drawing.OverlayType.RECTANGLE,
+					drawingControl: true,
+					rectangleOptions
+				});
+
+				drawingManager.setMap(this._map);
+				drawingManager.setOptions({
+					drawingControl: false
+				});
+				google.maps.event.addListener(drawingManager, 'rectanglecomplete', (rectangle) => {
+					rectangles.push(rectangle);
+					if (listener) {
+						listener(rectangle);
+					}
+				});
+				return {
+					clear: () => {
+						drawingManager.setMap(null);
+						rectangles.forEach((m) => m.setMap(null));
+					},
+					stop: () => {
+						drawingManager.setMap(null);
+					},
+					rectangles
+				};
+			} else throw 'map is not loaded cannot add marker';
+		}
+		drawMarker(markerOptions?: google.maps.MarkerOptions, listener?: Function) {
+			let points: google.maps.Marker[] = [];
+			let drawingManager: null | google.maps.drawing.DrawingManager;
+			if (this._loaded) {
+				drawingManager = new google.maps.drawing.DrawingManager({
+					drawingMode: google.maps.drawing.OverlayType.MARKER,
+					drawingControl: true,
+					markerOptions
+				});
+
+				drawingManager.setMap(this._map);
+				drawingManager.setOptions({
+					drawingControl: false
+				});
+				google.maps.event.addListener(drawingManager, 'markercomplete', (marker) => {
+					if (listener) {
+						listener(marker);
+					}
+					points.push(marker);
+				});
+				return {
+					clear: () => {
+						drawingManager.setMap(null);
+						points.forEach((m) => m.setMap(null));
+					},
+					stop: () => {
+						drawingManager.setMap(null);
+					},
+					points
+				};
+			} else throw 'map is not loaded cannot add marker';
+		}
 		addItem({ position, icon, title }) {
 			if (this._loaded) {
 				this._items.push(
@@ -41,27 +106,25 @@
 </script>
 
 <script lang="ts">
-	import { Loader } from '@googlemaps/js-api-loader';
-	const loader = new Loader({
-		apiKey: 'AIzaSyAD6HVJHgRC0i5nqcX7Pnu9veKbSRSN5C0'
-	});
+	import {loadGoogleMaps} from "./LoadGoogleMaps.svelte"
+	interface MapOptions extends google.maps.MapOptions {
+		mapId: string;
+	}
+	export let mapOptions: MapOptions = {
+		center: { lat: 0, lng: 0 },
+		zoom: 2,
+		mapId: '1deb78b225b46ac6',
+		disableDefaultUI: true
+	};
+	mapOptions.mapId = '1deb78b225b46ac6';
 
-	loader
-		.load()
-		.then(() => {
-			$map.map = new google.maps.Map(
-				document.getElementById('map') as HTMLElement,
-				{
-					center: { lat: 42.345573, lng: -71.098326 },
-					zoom: 8,
-					mapId: '1deb78b225b46ac6',
-					disableDefaultUI: true
-				} as google.maps.MapOptions
-			);
+	
+		$loadGoogleMaps.then(() => {
+			$map.map = new google.maps.Map(document.getElementById('map') as HTMLElement, mapOptions);
 		})
 		.catch((reason) => {
 			// Probably @googlemaps/js-api-loader
-			console.log(reason)
+			console.log(reason);
 		});
 </script>
 

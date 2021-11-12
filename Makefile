@@ -1,6 +1,5 @@
 start:
-	xfce4-terminal -e  'npm run hybrid'
-	nvim
+	npm run hybrid
 
 install:
 	git clone git@github.com:GeoGameOrg/api-server.git backend/

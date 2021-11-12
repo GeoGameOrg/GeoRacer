@@ -60,14 +60,10 @@
 </script>
 
 <script lang="ts">
-	import { Loader } from '@googlemaps/js-api-loader';
-	const loader = new Loader({
-		apiKey: 'AIzaSyAD6HVJHgRC0i5nqcX7Pnu9veKbSRSN5C0'
-	});
+
+	import {loadGoogleMaps} from "./LoadGoogleMaps.svelte"
 	export const position = { lat: 42.345573, lng: -71.098326 };
-	loader
-		.load()
-		.then(() => {
+		$loadGoogleMaps.then(() => {
 			$pano.pano = new google.maps.StreetViewPanorama(
 				document.getElementById('pano') as HTMLElement,
 				{
